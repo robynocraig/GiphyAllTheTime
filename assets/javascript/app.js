@@ -55,6 +55,15 @@ $(document).ready(function() {
         // Appending the image
         artistsDiv.append(giphyImage);
 
+        // Storing the download URL data
+
+        var downloadURL = results[i].images.original.url;
+
+        var pTwo = $("<p>").html("<a href=" + downloadURL + ">" + "Download GIF" + "</a>");
+
+        // Append the download link
+        artistsDiv.append(pTwo);
+
         // Putting the image in the div
         $("#gifsDisplay").prepend(artistsDiv);
 
@@ -127,12 +136,12 @@ $(document).ready(function() {
   });
 
   // FUNCTION TO DISPLAY RANDOM GIF
-  // the function that starts when the button is clicked
+
   $("#randomBtn").on("click", function() {
 
     $("#randomGif").empty();
 
-    // API URL to get a random cat
+    // API URL to get a random gif image
     var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=eXssaD9YeTfAYOKoPh2z6l27EN6AsQD5&limit=1";
 
     // AJAX call to get the data from the API endpoint

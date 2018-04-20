@@ -34,8 +34,11 @@ $(document).ready(function() {
         // Storing the rating data
         var rating = results[i].rating;
 
-        // Creating an element to have the rating displayed
-        var pOne = $("<p>").text("Rating: " + rating);
+        // Storing the title data
+        var title = results[i].title;
+
+        // Creating an element to have the rating & title displayed
+        var pOne = $("<p>").text("Rating: " + rating + " || " + "Title: " + title);
 
         // Displaying the rating
         artistsDiv.append(pOne);
@@ -126,6 +129,8 @@ $(document).ready(function() {
   // FUNCTION TO DISPLAY RANDOM GIF
   // the function that starts when the button is clicked
   $("#randomBtn").on("click", function() {
+
+    $("#randomGif").empty();
 
     // API URL to get a random cat
     var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=eXssaD9YeTfAYOKoPh2z6l27EN6AsQD5&limit=1";

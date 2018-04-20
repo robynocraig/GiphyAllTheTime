@@ -13,10 +13,15 @@
 p {
   font-weight: bold;
 }
- img {
+
+img {
    margin-bottom: 10px;
- }
+}
 
 #formDiv {
   float: right;
+}
+
+#randomBtn {
+  margin: 20px 0 20px 0;
 }

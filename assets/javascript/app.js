@@ -55,15 +55,6 @@ $(document).ready(function() {
         // Appending the image
         artistsDiv.append(giphyImage);
 
-        // Storing the download URL data
-
-        var downloadURL = results[i].images.original.url;
-
-        var pTwo = $("<p>").html("<a href=" + downloadURL + ">" + "Download GIF" + "</a>");
-
-        // Append the download link
-        artistsDiv.append(pTwo);
-
         // Putting the image in the div
         $("#gifsDisplay").prepend(artistsDiv);
 

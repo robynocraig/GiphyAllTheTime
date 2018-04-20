@@ -18,6 +18,8 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
 
+      //console.log(response)
+
       // Clears out gifsDisplay div in case there are existing images already there
       $("#gifsDisplay").empty();
 
@@ -50,7 +52,7 @@ $(document).ready(function() {
         // Appending the image
         artistsDiv.append(giphyImage);
 
-        // Putting the entire movie above the previous movies
+        // Putting the image in the div
         $("#gifsDisplay").prepend(artistsDiv);
 
       }
@@ -75,19 +77,19 @@ $(document).ready(function() {
       }
   });
 
-  // Function for displaying movie data
+  // Function for displaying artists data
   function renderButtons() {
 
     // Deleting the artists prior to adding the buttons (or the buttons repeat when one is added)
     $("#artistButtonsDiv").empty();
 
-    // Looping through the array of movies
+    // Looping through the array of artists
     for (var i = 0; i < topics.length; i++) {
 
-      // Then dynamicaly generating buttons for each movie in the array
+      // Then dynamicaly generating buttons for each artist in the array
       var a = $("<button>");
 
-      // Adding a class of movie-btn to our button
+      // Adding a class of artist-btn to our button
       a.addClass("artist-btn");
 
       // Adding a data-attribute
@@ -96,7 +98,7 @@ $(document).ready(function() {
       // Providing the initial button text
       a.text(topics[i]);
 
-      // Adding the button to the buttons-view div
+      // Adding the button to the artistButtonsDiv div
       $("#artistButtonsDiv").append(a);
     }
   }
@@ -119,6 +121,36 @@ $(document).ready(function() {
 
     // Calling renderButtons which handles the processing of our artist array (with our new artist added)
     renderButtons();
+  });
+
+  // FUNCTION TO DISPLAY RANDOM GIF
+  // the function that starts when the button is clicked
+  $("#randomBtn").on("click", function() {
+
+    // API URL to get a random cat
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=eXssaD9YeTfAYOKoPh2z6l27EN6AsQD5&limit=1";
+
+    // AJAX call to get the data from the API endpoint
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+
+    // The API request has completed
+      .then(function(response) {
+
+      // Get image URL from API
+        var imageUrl = response.data.image_original_url;
+
+        // Create a virtual jQuery image
+        var randomImage = $("<img>");
+
+        // Apply attributes to jQuery image
+        randomImage.attr("src", imageUrl);
+
+        // Append jQuery Image to actual DOM
+        $("#randomGif").prepend(randomImage);
+      });
   });
 
 });
